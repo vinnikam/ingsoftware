@@ -2,6 +2,8 @@ package operaciones;
 
 import bd.ManejadorConexion;
 import dto.Vehiculo;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OperacionesVehiculo implements Operacion<Vehiculo>{
+    private static Logger log = LogManager.getLogger(OperacionesVehiculo.class.getName());
 
     private final String sqlCrear= "INSERT INTO vehiculo(placa, precio, marca) VALUES (?, ?, ?)";
     private final String sqlModificar= "UPDATE vehiculo SET precio = ?, marca =? WHERE placa = ?";
@@ -44,12 +47,13 @@ public class OperacionesVehiculo implements Operacion<Vehiculo>{
                 }
 
             } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                log.error("Mensaje ", throwables);
             } finally {
                 mc.desconexion(conexActiva);
 
             }
         }
+
         return false;
     }
 

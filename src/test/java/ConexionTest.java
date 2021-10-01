@@ -1,6 +1,7 @@
 import bd.ManejadorConexion;
 import dto.Vehiculo;
 import operaciones.OperacionesVehiculo;
+import operaciones.OperacionesVehiculoA;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
@@ -52,8 +53,29 @@ public class ConexionTest {
         Vehiculo v = new Vehiculo();
         v.setPrecio(15000);
         v.setMarca("kia");
+        v.setPlaca("RRR234");
+        boolean rta = oper.crear(v);
+        assertTrue(rta );
+    }
+    @DisplayName("Prueba constructor ")
+    @Test
+    public void testConstructorOK(){
+
+        OperacionesVehiculoA oper= new OperacionesVehiculoA();
+
+        Vehiculo v = new Vehiculo();
+        v.setPrecio(1584);
+        v.setMarca("kia");
         v.setPlaca("RR2234");
         boolean rta = oper.crear(v);
         assertTrue(rta );
+    }
+    @DisplayName("Prueba testConexionSQLite ")
+    @Test
+    public void testConexionSQLite(){
+
+        ManejadorConexion m = new ManejadorConexion();
+        Connection c = m.conectarse();
+        assertNotNull(c );
     }
 }

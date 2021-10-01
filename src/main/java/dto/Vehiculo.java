@@ -1,6 +1,8 @@
 package dto;
 
-public class Vehiculo {
+import java.io.Serializable;
+
+public class Vehiculo implements Serializable {
     private String placa;
     private long precio;
     private String marca;
